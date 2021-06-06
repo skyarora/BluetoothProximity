@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "787368397356",
+    "project_id": "bluetoothprox",
+    "storage_bucket": "bluetoothprox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787368397356:android:777738223e7daf384ddf89",
+        "android_client_info": {
+          "package_name": "com.example.bluetoothprox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787368397356-68abi3uj4k19u9u9360lak8aqh0tijsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtas373cBl9S7MKjRyeUWK76LbKI778dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787368397356-68abi3uj4k19u9u9360lak8aqh0tijsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
