@@ -1,11 +1,12 @@
+import 'package:bluetoothprox/hello.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'authentication.dart';
 import 'hello_screen.dart';
-import 'package:bluetoothprox/sign_in_page.dart';
+import 'form_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'widgets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return FindDevicesScreen();
+      return FlutterBlueApp();
     }
     return SignInPage();
   }
