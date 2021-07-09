@@ -1,8 +1,9 @@
+import 'package:bluetoothprox/hello.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'hello.dart';
+import 'login_screen.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,25 +15,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyLoginPage(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyLoginPage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _MyLoginPageState createState() => _MyLoginPageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
+class _MyHomePageState extends State<MyHomePage> {
   final _auth = FirebaseAuth.instance;
   bool showProgress = false;
+
   String email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Firebase Authentication"),
+        title: Text("SignUp"),
       ),
       body: Center(
         child: ModalProgressHUD(
@@ -41,7 +43,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Login Page",
+                "Registration Page",
                 style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
               ),
               SizedBox(
@@ -51,7 +53,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  email = value; // get value from TextField
+                  email = value; //get the value entered by user.
                 },
                 decoration: InputDecoration(
                     hintText: "Enter your Email",
@@ -65,7 +67,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  password = value; //get value from textField
+                  password = value; //get the value entered by user.
                 },
                 decoration: InputDecoration(
                     hintText: "Enter your Password",
@@ -83,43 +85,48 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   onPressed: () async {
                     setState(() {
                       showProgress = true;
-                    }
-                    );
+                    });
                     try {
-                      final newUser = await _auth.signInWithEmailAndPassword(
+                      final newuser =
+                      await _auth.createUserWithEmailAndPassword(
                           email: email, password: password);
-                      print(newUser.toString());
-                      if (newUser != null)
-                      {
-                        Fluttertoast.showToast(
-                            msg: "Login Successfull",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.blueAccent,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>FindDevicesScreen()));
+
+                      if (newuser != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyLoginPage()),
+                        );
 
                         setState(() {
                           showProgress = false;
                         });
                       }
-                      else
-                        {
-                          AlertDialog(title: Text("Enter Email and Password..."));
-                              }
                     } catch (e) {}
                   },
                   minWidth: 200.0,
                   height: 45.0,
                   child: Text(
-                    "Login",
+                    "Register",
                     style:
                     TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0),
-
                   ),
-
+                ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FindDevicesScreen()),
+                  );
+                },
+                child: Text(
+                  "Already Registred? Login Now",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w900),
                 ),
               )
             ],
