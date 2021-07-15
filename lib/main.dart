@@ -6,6 +6,7 @@ import 'form_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'splashscreen.dart';
 import 'widgets.dart';
 
 Future<void> main() async {
@@ -46,6 +47,6 @@ class AuthenticationWrapper extends StatelessWidget {
     if (firebaseUser != null) {
       return FlutterBlueApp();
     }
-    return SignInPage();
+    return SplashScreen();
   }
 }
